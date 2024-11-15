@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain import hub
-from langchain)experimental.agents import create_csv_agent
-from langchain)openai import ChatOpenAI
+from langchain_experimental.agents import create_csv_agent
+from langchain_openai import ChatOpenAI
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain_experimental.tools import PythonREPLTool
 
@@ -11,7 +11,7 @@ def main():
     print("Start...")
 
     instructions = """
-    You are an agent designed to write and execute Python code to anser questions.
+    You are an agent designed to write and execute Python code to answer questions.
     You have acces to a python REPL, which you can use to execute python code.
     If you get an error, debug your code and try again.
     Only use the output of your code to answer the questtion.
