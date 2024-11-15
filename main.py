@@ -12,7 +12,7 @@ def main():
 
     instructions = """
     You are an agent designed to write and execute Python code to answer questions.
-    You have acces to a python REPL, which you can use to execute python code.
+    You have access to a python REPL, which you can use to execute python code.
     If you get an error, debug your code and try again.
     Only use the output of your code to answer the questtion.
     You might know the answer without running any code, but you should still run the code to get the answer.
@@ -31,13 +31,20 @@ def main():
     )
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-    agent_executor.invoke(
-        input={
-            "input": """
-                generate and save in current working directory 2 QR codes thath point to www.google.com you have qrcodepackage installed already
-            """
-            }
+    csv_agent = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4"),
+        path="episode_info.csv",
+        verbose=True,
+        allow_dangerous_code=True,
     )
+
+    csv_agent.invoke(
+        input={
+            "input": "How many columns are there in the file? episode_info.csv?"
+        }
+    )
+
+
 
 if __name__ =="__main__":
     main()
